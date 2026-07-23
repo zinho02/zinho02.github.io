@@ -29,6 +29,12 @@
     --font-display: "Fraunces", Georgia, serif;
     --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
     --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+    
+    /* Syntax highlighting colors */
+    --syntax-type: #4fb999;
+    --syntax-field: #d9b569;
+    --syntax-value: #edeef1;
+    --syntax-punctuation: #6c7180;
   }
 
   html[data-theme="light"]{
@@ -41,6 +47,10 @@
     --accent: #2f6f5e;
     --accent-gold: #b08d3f;
     --grid-dot: rgba(18,20,28,0.07);
+    --syntax-type: #2f6f5e;
+    --syntax-field: #b08d3f;
+    --syntax-value: #12141c;
+    --syntax-punctuation: #868c98;
   }
 
   *{ box-sizing: border-box; }
@@ -176,16 +186,30 @@
     letter-spacing: 0.06em;
   }
   .photo{
-  width: 116px;
-  height: 116px;
-  border-radius: 12px;
-  object-fit: cover;
-  margin-bottom: 28px;
-  display: block;
-}
+    width: 180px;
+    height: 180px;
+    border-radius: 12px;
+    object-fit: cover;
+    display: block;
+  }
 
-  /* ---------- HERO ---------- */
-  .hero{ padding: 56px 0 72px; border-top: none; }
+  /* ---------- HERO — LAYOUT CHANGED TO HORIZONTAL ---------- */
+  .hero{ 
+    padding: 56px 0 72px; 
+    border-top: none; 
+  }
+  .hero-inner{
+    display: flex;
+    align-items: center;
+    gap: 36px;
+  }
+  .hero-photo{
+    flex-shrink: 0;
+  }
+  .hero-content{
+    flex: 1;
+    min-width: 0;
+  }
   .eyebrow{
     font-family: var(--font-mono);
     font-size: 13px;
@@ -281,7 +305,7 @@
   .contact-row{ display: flex; gap: 10px; }
   .footnote{ margin-top: 28px; font-family: var(--font-mono); font-size: 12px; color: var(--ink-faint); }
 
-/* ---------- INLINE BIBTEX PANEL ---------- */
+/* ---------- INLINE BIBTEX PANEL — SYNTAX HIGHLIGHTING ---------- */
   .bibtex-panel{
     display: grid;
     grid-template-rows: 0fr;
@@ -299,28 +323,39 @@
     font-family: var(--font-mono);
     font-size: 12.5px;
     line-height: 1.55;
-    color: var(--ink-soft);
+    color: var(--syntax-value);
     white-space: pre;
   }
+  
+  /* Syntax highlighting classes */
+  .bibtex-type { color: var(--syntax-type); font-weight: 600; }
+  .bibtex-field { color: var(--syntax-field); }
+  .bibtex-value { color: var(--syntax-value); }
+  .bibtex-punct { color: var(--syntax-punctuation); }
+  
   .bibtex-copy-btn{
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 7px 13px;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
     margin-bottom: 4px;
     border: 1px solid var(--accent);
     border-radius: var(--radius);
     color: var(--accent);
     background: transparent;
-    font-family: var(--font-mono);
-    font-size: 12px;
     cursor: pointer;
   }
-  .bibtex-copy-btn:hover{ background: var(--accent); color: var(--bg); }
+  .bibtex-copy-btn svg{ width: 16px; height: 16px; display: block; }
+  .bibtex-copy-btn:hover{ background: var(--accent); color: var(--bg); border-color: var(--accent); }
   .bibtex-copy-btn.copied{ background: var(--accent); color: var(--bg); border-color: var(--accent); }
+  
   @media (max-width: 560px){
     :root{ --bar-h: 72px; }
     .hero{ padding: 40px 0 48px; }
+    .hero-inner{ flex-direction: column; text-align: center; }
+    .hero-photo{ margin-bottom: 16px; }
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -347,14 +382,20 @@
 <main class="wrap">
 
   <section class="hero">
-    <img class="photo" src="profile_picture.jpeg" alt="Matheus Saldanha" width="116" height="116">
-    <h1 class="name">Matheus Saldanha</h1>
-    <p class="role">Ph.D. Student, University of Campinas (Unicamp), Campinas, Brazil</p>
-    <div class="hero-links">
-      <a class="btn-cv" href="Curriculum_Vitae.pdf" aria-label="Download CV" title="Download CV">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M12 11v6"/><path d="m9 14 3 3 3-3"/></svg>
-        <span>Download CV</span>
-      </a>
+    <div class="hero-inner">
+      <div class="hero-photo">
+        <img class="photo" src="profile_picture.jpeg" alt="Matheus Saldanha" width="180" height="180">
+      </div>
+      <div class="hero-content">
+        <h1 class="name">Matheus Saldanha</h1>
+        <p class="role">Ph.D. Student, University of Campinas (Unicamp), Campinas, Brazil</p>
+        <div class="hero-links">
+          <a class="btn-cv" href="Curriculum_Vitae.pdf" aria-label="Download CV" title="Download CV">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M12 11v6"/><path d="m9 14 3 3 3-3"/></svg>
+            <span>Download CV</span>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -380,15 +421,17 @@
       </div>
         <div class="bibtex-panel">
                 <div class="bibtex-panel-inner">
-                  <pre class="bibtex-code"><code>@inproceedings{banegas2025hardened,
-  title={Hardened CTIDH: Dummy-Free and Deterministic CTIDH},
-  author={Banegas, Gustavo and Hellenbrand, Andreas and Saldanha, Matheus},
-  booktitle={International Conference on Cryptology in India},
-  pages={194--215},
-  year={2025},
-  organization={Springer}
-}</code></pre>
-                  <button class="bibtex-copy-btn" type="button">Copy</button>
+                  <pre class="bibtex-code"><code><span class="bibtex-punct">@</span><span class="bibtex-type">inproceedings</span><span class="bibtex-punct">{</span><span class="bibtex-value">banegas2025hardened</span><span class="bibtex-punct">,</span>
+  <span class="bibtex-field">title</span><span class="bibtex-punct">=</span><span class="bibtex-punct">{</span><span class="bibtex-value">Hardened CTIDH: Dummy-Free and Deterministic CTIDH</span><span class="bibtex-punct">},</span>
+  <span class="bibtex-field">author</span><span class="bibtex-punct">=</span><span class="bibtex-punct">{</span><span class="bibtex-value">Banegas, Gustavo and Hellenbrand, Andreas and Saldanha, Matheus</span><span class="bibtex-punct">},</span>
+  <span class="bibtex-field">booktitle</span><span class="bibtex-punct">=</span><span class="bibtex-punct">{</span><span class="bibtex-value">International Conference on Cryptology in India</span><span class="bibtex-punct">},</span>
+  <span class="bibtex-field">pages</span><span class="bibtex-punct">=</span><span class="bibtex-punct">{</span><span class="bibtex-value">194--215</span><span class="bibtex-punct">},</span>
+  <span class="bibtex-field">year</span><span class="bibtex-punct">=</span><span class="bibtex-punct">{</span><span class="bibtex-value">2025</span><span class="bibtex-punct">},</span>
+  <span class="bibtex-field">organization</span><span class="bibtex-punct">=</span><span class="bibtex-punct">{</span><span class="bibtex-value">Springer</span><span class="bibtex-punct">}</span>
+<span class="bibtex-punct">}</span></code></pre>
+                  <button class="bibtex-copy-btn" type="button" aria-label="Copy BibTeX">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  </button>
                 </div>
               </div>
     </div>
@@ -405,15 +448,17 @@
       </div>
         <div class="bibtex-panel">
                 <div class="bibtex-panel-inner">
-                  <pre class="bibtex-code"><code>@inproceedings{saldanha2025enhancing,
-  title={Enhancing LoRaWAN Security: Addressing Static Root Keys with Post-Quantum Cryptography},
-  author={Saldanha, Matheus de O and Giron, Alexandre A and Cust{\'o}dio, Ricardo and Idalino, Tha{\'\i}s B},
-  booktitle={Simp{\'o}sio Brasileiro de Seguran{\c{c}}a da Informa{\c{c}}{\~a}o e de Sistemas Computacionais (SBSeg)},
-  pages={367--383},
-  year={2025},
-  organization={SBC}
-}</code></pre>
-                  <button class="bibtex-copy-btn" type="button">Copy</button>
+                  <pre class="bibtex-code"><code><span class="bibtex-punct">@</span><span class="bibtex-type">inproceedings</span><span class="bibtex-punct">{</span><span class="bibtex-value">saldanha2025enhancing</span><span class="bibtex-punct">,</span>
+  <span class="bibtex-field">title</span><span class="bibtex-punct">=</span><span class="bibtex-punct">{</span><span class="bibtex-value">Enhancing LoRaWAN Security: Addressing Static Root Keys with Post-Quantum Cryptography</span><span class="bibtex-punct">},</span>
+  <span class="bibtex-field">author</span><span class="bibtex-punct">=</span><span class="bibtex-punct">{</span><span class="bibtex-value">Saldanha, Matheus de O and Giron, Alexandre A and Cust{\'o}dio, Ricardo and Idalino, Tha{\'\i}s B</span><span class="bibtex-punct">},</span>
+  <span class="bibtex-field">booktitle</span><span class="bibtex-punct">=</span><span class="bibtex-punct">{</span><span class="bibtex-value">Simp{\'o}sio Brasileiro de Seguran{\c{c}}a da Informa{\c{c}}{\~a}o e de Sistemas Computacionais (SBSeg)</span><span class="bibtex-punct">},</span>
+  <span class="bibtex-field">pages</span><span class="bibtex-punct">=</span><span class="bibtex-punct">{</span><span class="bibtex-value">367--383</span><span class="bibtex-punct">},</span>
+  <span class="bibtex-field">year</span><span class="bibtex-punct">=</span><span class="bibtex-punct">{</span><span class="bibtex-value">2025</span><span class="bibtex-punct">},</span>
+  <span class="bibtex-field">organization</span><span class="bibtex-punct">=</span><span class="bibtex-punct">{</span><span class="bibtex-value">SBC</span><span class="bibtex-punct">}</span>
+<span class="bibtex-punct">}</span></code></pre>
+                  <button class="bibtex-copy-btn" type="button" aria-label="Copy BibTeX">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  </button>
                 </div>
               </div>
     </div>
@@ -665,10 +710,8 @@
         var text = codeEl ? codeEl.textContent.trim() : '';
 
         function showCopied(){
-          btn.textContent = 'Copied!';
           btn.classList.add('copied');
           setTimeout(function(){
-            btn.textContent = 'Copy';
             btn.classList.remove('copied');
           }, 1500);
         }
