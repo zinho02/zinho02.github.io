@@ -154,38 +154,47 @@
   .icon-btn.accent{ border-color: var(--accent); color: var(--accent); }
   .icon-btn.accent:hover{ background: var(--accent); color: var(--bg); }
 
-  /* ---------- PHOTO PLACEHOLDER ---------- */
+/* ---------- PHOTO PLACEHOLDER ---------- */
   .photo-placeholder{
-    width: 116px;
-    height: 116px;
+    width: 176px;
+    height: 176px;
+    flex-shrink: 0;
     border: 1.5px dashed var(--line);
-    border-radius: 12px;
+    border-radius: 14px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 8px;
     color: var(--ink-faint);
-    margin-bottom: 28px;
   }
-  .photo-placeholder svg{ width: 32px; height: 32px; }
+  .photo-placeholder svg{ width: 44px; height: 44px; }
   .photo-placeholder span{
     font-family: var(--font-mono);
     font-size: 10.5px;
     text-transform: uppercase;
     letter-spacing: 0.06em;
   }
+
   .photo{
-  width: 116px;
-  height: 116px;
-  border-radius: 12px;
-  object-fit: cover;
-  margin-bottom: 28px;
-  display: block;
-}
+    width: 176px;
+    height: 176px;
+    flex-shrink: 0;
+    border-radius: 14px;
+    object-fit: cover;
+    display: block;
+  }
 
   /* ---------- HERO ---------- */
   .hero{ padding: 56px 0 72px; border-top: none; }
+  .hero-top{
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    margin-bottom: 8px;
+  }
+  .hero-text{ flex: 1; min-width: 0; }
+  .eyebrow{
   .eyebrow{
     font-family: var(--font-mono);
     font-size: 13px;
@@ -321,6 +330,8 @@
   @media (max-width: 560px){
     :root{ --bar-h: 72px; }
     .hero{ padding: 40px 0 48px; }
+    .hero-top{ flex-direction: column; align-items: flex-start; gap: 22px; }
+    .photo-placeholder, .photo{ width: 128px; height: 128px; }
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -345,6 +356,21 @@
 </div>
 
 <main class="wrap">
+    <section class="hero">
+    <div class="hero-top">
+    <img class="photo" src="profile_picture.jpeg" alt="Matheus Saldanha" width="176" height="176">
+      <div class="hero-text">
+        <h1 class="name">Jordan Rivera</h1>
+        <p class="role">Ph.D. Student, University of Campinas (Unicamp), Campinas, Brazil</p>
+        <div class="hero-links">
+          <a class="btn-cv" href="Curriculum_Vitae.pdf" aria-label="Download CV" title="Download CV">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M12 11v6"/><path d="m9 14 3 3 3-3"/></svg>
+            <span>Download CV</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section class="hero">
     <img class="photo" src="profile_picture.jpeg" alt="Matheus Saldanha" width="116" height="116">
