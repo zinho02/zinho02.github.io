@@ -281,87 +281,43 @@
   .contact-row{ display: flex; gap: 10px; }
   .footnote{ margin-top: 28px; font-family: var(--font-mono); font-size: 12px; color: var(--ink-faint); }
 
-  /* ---------- BIBTEX MODAL ---------- */
-  .modal-overlay{
-    position: fixed;
-    inset: 0;
-    z-index: 200;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-    background: color-mix(in srgb, #000 55%, transparent);
+/* ---------- INLINE BIBTEX PANEL ---------- */
+  .bibtex-panel{
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.25s ease;
   }
-  .modal-overlay[hidden]{ display: none; }
-  .modal-box{
-    width: 100%;
-    max-width: 560px;
-    max-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 18px;
-    box-shadow: 0 18px 48px rgba(0,0,0,0.35);
-  }
-  .modal-head{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 12px;
-  }
-  .modal-head span{
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-  }
-  .modal-close{
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 28px;
-    height: 28px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    color: var(--ink-soft);
-    background: transparent;
-    cursor: pointer;
-  }
-  .modal-close:hover{ color: var(--ink); border-color: var(--ink-faint); }
-  .modal-close svg{ width: 14px; height: 14px; }
-  .modal-code{
-    margin: 0 0 14px;
+  .bibtex-panel.open{ grid-template-rows: 1fr; }
+  .bibtex-panel-inner{ overflow: hidden; min-height: 0; }
+  .bibtex-code{
+    margin: 14px 0 10px;
     padding: 14px;
     background: var(--bg);
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    overflow: auto;
+    overflow-x: auto;
     font-family: var(--font-mono);
     font-size: 12.5px;
     line-height: 1.55;
     color: var(--ink-soft);
     white-space: pre;
   }
-  .modal-copy{
-    align-self: flex-start;
+  .bibtex-copy-btn{
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 8px 14px;
+    padding: 7px 13px;
+    margin-bottom: 4px;
     border: 1px solid var(--accent);
     border-radius: var(--radius);
     color: var(--accent);
     background: transparent;
     font-family: var(--font-mono);
-    font-size: 12.5px;
+    font-size: 12px;
     cursor: pointer;
   }
-  .modal-copy:hover{ background: var(--accent); color: var(--bg); }
-  .modal-copy.copied{ background: var(--accent); color: var(--bg); border-color: var(--accent); }
-
+  .bibtex-copy-btn:hover{ background: var(--accent); color: var(--bg); }
+  .bibtex-copy-btn.copied{ background: var(--accent); color: var(--bg); border-color: var(--accent); }
   @media (max-width: 560px){
     :root{ --bar-h: 72px; }
     .hero{ padding: 40px 0 48px; }
@@ -417,17 +373,19 @@
       <p class="pub-authors"><span class="me">Matheus Saldanha</span>, Co-Author One, Co-Author Two</p>
       <p class="pub-venue">Conference</p>
       <div class="pub-links">
-        <a href="#" class="bibtex-trigger">BibTeX</a>
+        <a href="#" class="bibtex-trigger" aria-expanded="false">BibTeX</a>
         <a href="#">PDF</a>
         <a href="#">HTML</a>
         <a href="#">Code</a>
       </div>
-      <template class="bibtex-content">@inproceedings{rivera2026tighter,
-  title     = {Tighter Reductions for Lattice-Based Signatures in the Standard Model},
-  author    = {Rivera, Jordan and Co-Author, One and Co-Author, Two},
-  booktitle = {Advances in Cryptology -- CRYPTO 2026},
-  year      = {2026}
-}</template>
+        <div class="bibtex-panel">
+                <div class="bibtex-panel-inner">
+                  <pre class="bibtex-code"><code>@inproceedings{...
+          ...
+        }</code></pre>
+                  <button class="bibtex-copy-btn" type="button">Copy</button>
+                </div>
+              </div>
     </div>
 
     <div class="pub">
@@ -435,17 +393,19 @@
       <p class="pub-authors"><span class="me">Matheus Saldanha</span>, Co-Author One</p>
       <p class="pub-venue">Conference 2</p>
       <div class="pub-links">
-        <a href="#" class="bibtex-trigger">BibTeX</a>
+        <a href="#" class="bibtex-trigger" aria-expanded="false">BibTeX</a>
         <a href="#">PDF</a>
         <a href="#">HTML</a>
         <a href="#">Code</a>
       </div>
-      <template class="bibtex-content">@inproceedings{rivera2025compact,
-  title     = {Compact Zero-Knowledge Arguments from Module-LWE},
-  author    = {Rivera, Jordan and Co-Author, One},
-  booktitle = {Advances in Cryptology -- EUROCRYPT 2025},
-  year      = {2025}
-}</template>
+        <div class="bibtex-panel">
+                <div class="bibtex-panel-inner">
+                  <pre class="bibtex-code"><code>@inproceedings{...
+          ...
+        }</code></pre>
+                  <button class="bibtex-copy-btn" type="button">Copy</button>
+                </div>
+              </div>
     </div>
 
     <div class="pub">
@@ -453,17 +413,19 @@
       <p class="pub-authors">Co-Author One, <span class="me">Matheus Saldanha</span>, Co-Author Two</p>
       <p class="pub-venue">Conference 3</p>
       <div class="pub-links">
-        <a href="#" class="bibtex-trigger">BibTeX</a>
+        <a href="#" class="bibtex-trigger" aria-expanded="false">BibTeX</a>
         <a href="#">PDF</a>
         <a href="#">HTML</a>
         <a href="#">Code</a>
       </div>
-      <template class="bibtex-content">@inproceedings{rivera2024practical,
-  title     = {A Practical Evaluation of Post-Quantum TLS Handshakes},
-  author    = {Co-Author, One and Rivera, Jordan and Co-Author, Two},
-  booktitle = {Proceedings of the USENIX Security Symposium},
-  year      = {2024}
-}</template>
+        <div class="bibtex-panel">
+                <div class="bibtex-panel-inner">
+                  <pre class="bibtex-code"><code>@inproceedings{...
+          ...
+        }</code></pre>
+                  <button class="bibtex-copy-btn" type="button">Copy</button>
+                </div>
+              </div>
     </div>
   </section>
 
@@ -485,19 +447,6 @@
   </footer>
 
 </main>
-
-<div class="modal-overlay" id="bibtex-modal" hidden>
-  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="bibtex-modal-title">
-    <div class="modal-head">
-      <span id="bibtex-modal-title">BibTeX</span>
-      <button class="modal-close" id="bibtex-close" aria-label="Close">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-      </button>
-    </div>
-    <pre class="modal-code"><code id="bibtex-code"></code></pre>
-    <button class="modal-copy" id="bibtex-copy" type="button">Copy</button>
-  </div>
-</div>
 
 <script>
   (function(){
@@ -705,59 +654,32 @@
       resizeTimer = setTimeout(ensureIsoGraphSized, 150);
     });
 
-    /* ---------- BibTeX modal ---------- */
-
-    var bibtexModal = document.getElementById('bibtex-modal');
-    var bibtexCode = document.getElementById('bibtex-code');
-    var bibtexCopy = document.getElementById('bibtex-copy');
-    var bibtexClose = document.getElementById('bibtex-close');
-    var bibtexLastFocused = null;
-
-    function openBibtexModal(text, triggerEl){
-      bibtexLastFocused = triggerEl;
-      bibtexCode.textContent = text;
-      bibtexModal.hidden = false;
-      document.body.style.overflow = 'hidden';
-      bibtexClose.focus();
-    }
-
-    function closeBibtexModal(){
-      bibtexModal.hidden = true;
-      document.body.style.overflow = '';
-      if (bibtexLastFocused){ bibtexLastFocused.focus(); }
-    }
+/* ---------- inline BibTeX panel ---------- */
 
     document.querySelectorAll('.bibtex-trigger').forEach(function(trigger){
       trigger.addEventListener('click', function(e){
         e.preventDefault();
         var pub = trigger.closest('.pub');
-        var tpl = pub ? pub.querySelector('.bibtex-content') : null;
-        var text = tpl ? tpl.textContent.trim() : '';
-        openBibtexModal(text, trigger);
+        var panel = pub ? pub.querySelector('.bibtex-panel') : null;
+        if (!panel){ return; }
+        var isOpen = panel.classList.contains('open');
+        panel.classList.toggle('open', !isOpen);
+        trigger.setAttribute('aria-expanded', String(!isOpen));
+        trigger.textContent = isOpen ? 'BibTeX' : 'Hide BibTeX';
       });
     });
 
-    if (bibtexClose){ bibtexClose.addEventListener('click', closeBibtexModal); }
-    if (bibtexModal){
-      bibtexModal.addEventListener('click', function(e){
-        if (e.target === bibtexModal){ closeBibtexModal(); }
-      });
-    }
-    document.addEventListener('keydown', function(e){
-      if (e.key === 'Escape' && bibtexModal && !bibtexModal.hidden){ closeBibtexModal(); }
-    });
-
-    if (bibtexCopy){
-      bibtexCopy.addEventListener('click', function(){
-        var text = bibtexCode.textContent;
+    document.querySelectorAll('.bibtex-copy-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var codeEl = btn.parentElement ? btn.parentElement.querySelector('.bibtex-code') : null;
+        var text = codeEl ? codeEl.textContent.trim() : '';
 
         function showCopied(){
-          var original = 'Copy';
-          bibtexCopy.textContent = 'Copied!';
-          bibtexCopy.classList.add('copied');
+          btn.textContent = 'Copied!';
+          btn.classList.add('copied');
           setTimeout(function(){
-            bibtexCopy.textContent = original;
-            bibtexCopy.classList.remove('copied');
+            btn.textContent = 'Copy';
+            btn.classList.remove('copied');
           }, 1500);
         }
 
@@ -779,7 +701,7 @@
           fallbackCopy();
         }
       });
-    }
+    });
   })();
 </script>
 
