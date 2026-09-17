@@ -1,0 +1,54 @@
+{
+  "_comment": "Ordered list of publications. Display order = order in this file. Edit with scripts/site.py (pub add / pub edit / pub rm / pub move) or by hand, then run: ./scripts/site.py build",
+  "publications": [
+    {
+      "key": "banegas2025hardened",
+      "title": "Hardened CTIDH: Dummy-Free and Deterministic CTIDH",
+      "authors": [
+        "Gustavo Banegas",
+        "Andreas Hellenbrand",
+        "Matheus Saldanha"
+      ],
+      "venue": "Progress in Cryptology – INDOCRYPT 2025",
+      "links": [
+        { "label": "PDF", "href": "https://link.springer.com/chapter/10.1007/978-3-032-13301-4_9" },
+        { "label": "HTML", "href": "https://link.springer.com/chapter/10.1007/978-3-032-13301-4_9" },
+        { "label": "Code", "href": "https://github.com/AndHell/hardenedCTIDH" }
+      ]
+    },
+    {
+      "key": "saldanha2025enhancing",
+      "title": "Enhancing LoRaWAN Security: Addressing Static Root Keys with Post-Quantum Cryptography",
+      "authors": [
+        "Matheus Saldanha",
+        "Alexandre Augusto Giron",
+        "Ricardo Custódio",
+        "Thaís Bardini Idalino"
+      ],
+      "venue": "Anais do XXV Simpósio Brasileiro de Cibersegurança 2025",
+      "links": [
+        { "label": "PDF", "href": "https://sol.sbc.org.br/index.php/sbseg/article/view/36631" },
+        { "label": "HTML", "href": "https://sol.sbc.org.br/index.php/sbseg/article/view/36631" },
+        { "label": "Code", "href": "https://github.com/zinho02/lorawan-pq" }
+      ]
+    },
+    {
+      "key": "saldanha2026lut",
+      "title": "From LUT to Layer: Neural Network Inference with CKKS Functional Bootstrapping",
+      "authors": [
+        "Matheus Saldanha",
+        "Guilherme A. Horn",
+        "Mauricio L. Ferreira",
+        "Andreis G. M. Purim",
+        "Alex L. D. Cassinelli",
+        "Hilder V. L. Pereira"
+      ],
+      "venue": "Anais do XXVI Simpósio Brasileiro de Cibersegurança 2026",
+      "links": [
+        { "label": "PDF", "href": "https://sol.sbc.org.br/index.php/sbseg/article/view/44370" },
+        { "label": "HTML", "href": "https://sol.sbc.org.br/index.php/sbseg/article/view/44370" },
+        { "label": "Code", "href": "https://github.com/zinho02/func-ckks-neural-networks" }
+      ]
+    }
+  ]
+}

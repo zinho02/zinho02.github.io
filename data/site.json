@@ -1,0 +1,53 @@
+{
+  "_comment": "Site-wide content. Edit this file (or use scripts/site.py set), then run: ./scripts/site.py build",
+
+  "page_title": "Matheus Saldanha",
+  "meta_description": "Matheus Saldanha is a Ph.D. candidate in Computer Science working on cryptography.",
+
+  "name": "Matheus Saldanha",
+  "role": "Ph.D. Student, University of Campinas (Unicamp), Campinas, Brazil",
+
+  "photo": { "src": "profile_picture.jpeg", "alt": "Matheus Saldanha", "size": 280 },
+
+  "cv": { "href": "Curriculum_Vitae.pdf", "label": "Download CV" },
+
+  "_me_aliases_comment": "Author names that get bolded in the publication list.",
+  "me_aliases": [
+    "Matheus Saldanha",
+    "Matheus de O. Saldanha",
+    "Matheus de Oliveira Saldanha",
+    "M. Saldanha"
+  ],
+
+  "_about_comment": "One entry per paragraph. Inline HTML (e.g. <a href=...>) is allowed and passed through as-is.",
+  "about": [
+    "I am a Ph.D. student at the <a href=\"https://www.unicamp.br/\" target=\"_blank\" rel=\"noopener\">University of Campinas (Unicamp)</a>, working in the <a href=\"https://www.lasca.ic.unicamp.br/\" target=\"_blank\" rel=\"noopener\">Laboratory of Security and Cryptography (LASCA)</a> under the supervision of <a href=\"https://hilder-vitor.github.io/\" target=\"_blank\" rel=\"noopener\">Prof. Hilder Lima</a>.",
+    "Previously, I earned my M.Sc. and B.Sc. degrees from the <a href=\"https://ufsc.br/\" target=\"_blank\" rel=\"noopener\">Federal University of Santa Catarina (UFSC)</a> under the supervision of <a href=\"https://rfcustodio.github.io/\" target=\"_blank\" rel=\"noopener\">Prof. Ricardo Custódio</a>, where I was a member of the <a href=\"https://labsec.ufsc.br/\" target=\"_blank\" rel=\"noopener\">Laboratory of Computer Security (LabSEC)</a>.",
+    "My main research focuses on Fully Homomorphic Encryption (FHE), a technology centered on preserving data privacy during computation. Specifically, I work on reducing the bootstrapping cost of FHE schemes from a theoretical perspective. During my Master's, I also researched applications of Post-Quantum Cryptography (PQC) and theoretical aspects aimed at strengthening the security of isogeny-based cryptographic schemes. More broadly, I am interested in cryptographic primitives studied from an algebraic point of view."
+  ],
+
+  "external_links_new_tab": false,
+
+  "_contact_comment": "Footer icon links. 'icon' must be one of the names listed by: ./scripts/site.py icons",
+  "contact": [
+    { "icon": "email", "label": "Email", "href": "mailto:matheus@saldanhash.xyz" },
+    { "icon": "scholar", "label": "Google Scholar", "href": "https://scholar.google.com.br/citations?hl=pt-BR&user=22cboJMAAAAJ" },
+    { "icon": "github", "label": "GitHub", "href": "https://github.com/zinho02" },
+    { "icon": "linkedin", "label": "LinkedIn", "href": "https://www.linkedin.com/in/matheus-de-oliveira-saldanha/" }
+  ],
+
+  "_animation_comment": "Isogeny-graph header animation. Lengths are CSS pixels; lower pxPerColumn = denser graph. Run `./scripts/site.py build` after changing these.",
+  "animation": {
+    "pxPerColumn": 34,
+    "minColumns": 7,
+    "maxColumns": 97,
+    "nodeRadius": 3.2,
+    "endNodeRadius": 4.2,
+    "edgeWidth": 1,
+    "walkWidth": 2,
+    "verticalPadding": 13,
+    "branchProbability": 0.6,
+    "tripleProbability": 0.16,
+    "maxCrossEdges": 2
+  }
+}
